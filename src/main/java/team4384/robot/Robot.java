@@ -36,12 +36,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
-        boolean getXButtonPressed;
-        private final
-        private final edu.wpi.first.wpilibj.Joystick Xbox = new edu.wpi.first.wpilibj.Joystick(0); // 0 is the USB Port to be used as indicated on the Driver Station
-       
-        // private final WPI_TalonSRX motor = new WPI_TalonSRX(CAN_ID_1);
-        private final TalonFX motor = new TalonFX(0);
+
     }
 
     public void main(){
