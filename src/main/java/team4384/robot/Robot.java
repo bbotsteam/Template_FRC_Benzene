@@ -27,7 +27,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -37,14 +36,48 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
+        boolean getXButtonPressed;
+        boolean getYButtonPressed;
+        private final edu.wpi.first.wpilibj.Joystick Xbox = new edu.wpi.first.wpilibj.Joystick(0); // 0 is the USB Port to be used as indicated on the Driver Station
+       
+        // private final WPI_TalonSRX motor = new WPI_TalonSRX(CAN_ID_1);
+        private final TalonFX motor = new TalonFX(0);
     }
-
-    @Override
-    public void teleopPeriodic() {
-
-    }
-
-    public static void main(String... args) {
-        RobotBase.startRobot(Robot::new);
+    public void main(){
+        if (getXButtonPressed = true){
+             // should i use getAButton to check the last time the A button was pressed
+    
+            /*motor.set(TalonSRXControlMode.Current, 10.0);
+            motor.set(TalonSRXControlMode.PercentOutput, 75.0);
+            motor.set(TalonSRXControlMode.Velocity, 75.0);
+            motor.set(TalonSRXControlMode.Position, 75.0); */
+            motor.set(TalonFXControlMode.PercentOutput, 100.0);
+            System.out.println("Motor is spinning");
+    
+        }
+                 else(getXButtonPressed = false){
+                motor.stopMotor();
+                System.out.println("Motor is not spinning");
+             }
+            
+            if (getYButtonPressed = true){
+                // could I just set the motor as motor.setInverted(true);
+               /* motor.setInverted(TalonSRXControlMode.Current, 10.0);
+                motor.setInverted(TalonSRXControlMode.PercentOutput, 75.0);
+                motor.setInverted(TalonSRXControlMode.Velocity, 75.0);
+                motor.setInverted(TalonSRXControlMode.Position, 75.0);*/
+                motor.setInverted(TalonFXControlMode.PercentOutput, 100.0);
+                System.out.println("Motor is spinning");
+                
+    
+                else(getYButtonPressed = false)
+                    motor.stopMotor();
+                    System.out.println("Motor is not spinning");
+            }
+    
+            
+            if (getYButtonPressed && getXButtonPressed){
+                motor.stopMotor();
+            }
     }
 }
