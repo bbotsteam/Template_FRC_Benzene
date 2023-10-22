@@ -34,36 +34,32 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * project.
  */
 public class Robot extends TimedRobot {
+    private Joystick Xbox = new Joystick(0); // 0 is the USB Port to be used as indicated on the Driver Station
+    private JoystickButton X = new JoystickButton(Xbox, 1);
+    private JoystickButton Y = new JoystickButton(Xbox, 2);
+    private TalonFX motor = new TalonFX(46);
+
     @Override
     public void robotInit() {
 
     }
 
-    public void main(){
+    public void teleopPeriodic(){
 
-        Joystick Xbox = new Joystick(0); // 0 is the USB Port to be used as indicated on the Driver Station
-        JoystickButton X = new JoystickButton(Xbox, 1);
-        JoystickButton Y = new JoystickButton(Xbox, 2);
-
-        TalonFX motor = new TalonFX(0);
 
         if (X.getAsBoolean() == true){
             motor.setInverted(false);
             motor.set(TalonFXControlMode.PercentOutput, 10.0);
-            System.out.println("Motor is spinning");
-    
         } else {
             motor.set(TalonFXControlMode.PercentOutput, 0);
-            System.out.println("Motor is not spinning");
-        }
-
-        if (Y.getAsBoolean() == true) {
+        } else if (Y.getAsBoolean() == true) {
             motor.setInverted(true);
             motor.set(TalonFXControlMode.PercentOutput, 10.0);
-            System.out.println("Motor is spinning");
         } else {
             motor.set(TalonFXControlMode.PercentOutput, 0);
-            System.out.println("Motor is not spinning");
         }
+    }
+    public static void main(String...args){
+        RobotBase.startRobot(Robot::new);
     }
 }
