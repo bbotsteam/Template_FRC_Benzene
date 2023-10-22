@@ -34,45 +34,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  * the package after creating this project, you must also update the build.gradle file in the
  * project.
  */
-public class Robot extends TimedRobot {
-
-    /*
-
-    All The Different Function that you can use
-    public void robotInit() {}
-    public void simulationInit() {}
-    public void disabledInit() {}
-    public void autonomousInit() {}
-    public void teleopInit() {}
-    public void testInit() {}
-    public void robotPeriodic() {}
-    public void simulationPeriodic() {}
-    public void disabledPeriodic() {}
-    public void autonomousPeriodic() {}
-    public void teleopPeriodic() {}
-    public void testPeriodic() {}
-    public void disabledExit() {}
-    public void autonomousExit() {}
-    public void teleopExit() {}
-    public void testExit() {}
-     */
+public class AlvinJoystick {
     private Joystick Xbox = new Joystick(0); // 0 is the USB Port to be used as indicated on the Driver Station
     private TalonFX motor = new TalonFX(46);
 
-    @Override
-    public void robotInit() {
-
-    }
-
-    @Override
-    public void teleopPeriodic() { //note: java is *sequential*
+    public void run() { //note: java is *sequential*
         motor.setInverted(false); // this function in the parameteres
-        double speed = Xbox.getRawAxis(0.0); //get raw axis is more persice: 0.0 is inittialize value for get raw axis
+        double speed = Xbox.getRawAxis(1); //get raw axis is more persice: 0.0 is inittialize value for get raw axis
         motor.set(TalonFXControlMode.PercentOutput, speed);
-       
-    }
-
-    public static void main(String... args) {
-        RobotBase.startRobot(Robot::new);
+        SmartDashboard.putNumber("Speed", speed);
     }
 }

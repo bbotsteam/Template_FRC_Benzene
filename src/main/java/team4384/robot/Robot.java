@@ -38,6 +38,7 @@ public class Robot extends TimedRobot {
     private JoystickButton X = new JoystickButton(Xbox, 1);
     private JoystickButton Y = new JoystickButton(Xbox, 2);
     private TalonFX motor = new TalonFX(46);
+    private AlvinJoystick AJ = new AlvinJoystick();
 
     @Override
     public void robotInit() {
@@ -45,19 +46,8 @@ public class Robot extends TimedRobot {
     }
 
     public void teleopPeriodic(){
-
-
-        if (X.getAsBoolean() == true){
-            motor.setInverted(false);
-            motor.set(TalonFXControlMode.PercentOutput, 10.0);
-        } else {
-            motor.set(TalonFXControlMode.PercentOutput, 0);
-        } else if (Y.getAsBoolean() == true) {
-            motor.setInverted(true);
-            motor.set(TalonFXControlMode.PercentOutput, 10.0);
-        } else {
-            motor.set(TalonFXControlMode.PercentOutput, 0);
-        }
+        SmartDashboard.putBoolean("Alvin Stupid", true);
+        AJ.run();
     }
     public static void main(String...args){
         RobotBase.startRobot(Robot::new);
